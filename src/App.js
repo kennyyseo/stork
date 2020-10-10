@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
+        <header className='App-header'>
           Stork
           <nav>
             <NavLink exact to='/'>
