@@ -3,7 +3,8 @@ var Schema = mongoose.Schema;
 
 var nameSchema = new Schema({
     name: { type: String, required: true },
-    description: { type: String, default: "N/A" },
+    meaning: { type: String },
+    description: { type: String },
 });
 
 module.exports = mongoose.model('Name', nameSchema);
