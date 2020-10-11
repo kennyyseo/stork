@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const Schema = mongoose.Schema;
 
 const SALT_ROUNDS = 6;
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     name: String,
     email: { type: String, required: true, lowercase: true, unique: true },
     password: String
@@ -21,7 +22,7 @@ userSchema.pre('save', function (next) {
         function (err, hash) {
             if (err) return next(err);
             user.password = hash;
-            return next();
+            next();
         }
     );
 });

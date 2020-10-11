@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Switch, Redirect, NavLink } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
-import NamePage from '../../components/NamePage/NamePage'
-import * as nameAPI from "../../services/names-api";
+import NamesPage from '../NamesPage/NamesPage'
 import userService from '../../utils/userService';
+import namesService from '../../utils/namesService';
 
 class App extends Component {
   constructor() {
@@ -17,8 +17,8 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const apiNames = await nameAPI.getAll();
-    this.setState({ names: apiNames })
+    const names = await namesService.index();
+    this.setState({ names });
   }
 
   handleLogout = () => {
@@ -35,8 +35,8 @@ class App extends Component {
       <div className="App">
         <header className='App-header'>Stork</header>
         <Switch>
-          <Route exact path='/' render={() =>
-            <NamePage
+          <Route exact path='/names' render={() =>
+            <NamesPage
               user={this.state.user}
             />
           } />
