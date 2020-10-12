@@ -1,25 +1,30 @@
 import React from 'react';
+import './NamesList.css';
 
 const NamesList = (props) => {
     return (
-        <div>
-            <table striped>
-                <thead>
+        <div className='NamesList'>
+            <table className="table">
+                <thead className="thead-dark">
                     <tr>
-                        <th>Names</th>
-                        <th>Meaning</th>
-                        <th>Description</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Meaning</th>
+                        <th scope="col">Description</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Taylor</td>
-                        <td>Beautiful</td>
-                        <td>If only Sarah liked the name</td>
-                    </tr>
+                    {props.names.map((name, idx) =>
+                        <tr>
+                            <th scope="row">{idx + 1}</th>
+                            <td>{name.name}</td>
+                            <td>{name.meaning}</td>
+                            <td>{name.description}</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
-        </div>
+        </div >
     )
 }
 

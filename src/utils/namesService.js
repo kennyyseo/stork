@@ -2,23 +2,53 @@ import tokenService from './tokenService';
 const BASE_URL = '/api/names/';
 
 export default {
-    index,
-    create
+    getAll,
+    create,
+    update,
+    deleteOne,
 };
 
-function index() {
-    return fetch(BASE_URL).then(res => res.json());
+function getAll() {
+    return fetch(BASE_URL, {
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }
+    }, { mode: 'cors' })
+        .then(res => res.json());
 }
 
 function create(name) {
-    const options = {
+    return fetch(BASE_URL, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
             'Authorization': 'Bearer ' + tokenService.getToken()
         },
         body: JSON.stringify(name)
-    };
-    return fetch(BASE_URL, options).then(res => res.json());
+    }, { mode: 'cors' })
+        .then(res => res.json());
 }
 
+function update(name) {
+    return fetch(`${BASE_URL}/${name._id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
+        body: JSON.stringify(name)
+    }, { mode: 'cors' })
+        .then(res => res.json(name));
+}
+
+function deleteOne(id) {
+    return fetch(`${BASE_URL}/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
+    }, { mode: 'cors' })
+        .then(res => res.json());
+}

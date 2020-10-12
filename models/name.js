@@ -5,8 +5,7 @@ const nameSchema = new Schema({
     name: String,
     meaning: String,
     description: String,
-}, {
-    timestamps: true
+    user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 module.exports = mongoose.model('Name', nameSchema);
