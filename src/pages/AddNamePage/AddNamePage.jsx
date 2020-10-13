@@ -17,6 +17,7 @@ class AddNamePage extends Component {
         e.preventDefault();
         this.props.handleAddName(this.state.formData);
     };
+
     handleChange = e => {
         const formData = { ...this.state.formData, [e.target.name]: e.target.value };
         this.setState({
@@ -24,6 +25,7 @@ class AddNamePage extends Component {
             invalidForm: !this.formRef.current.checkValidity()
         });
     };
+
     render() {
         return (
             <>

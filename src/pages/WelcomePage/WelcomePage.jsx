@@ -6,10 +6,9 @@ const WelcomePage = (props) => {
         <div>
             <h1 id='greeting'>Welcome to Stork!</h1>
             <h3>Do you know the gender of your baby?</h3>
-            <label for="items">Gender</label>
             <select id="items">
-                <option value="item-1">Male</option>
-                <option value="item-2">Female</option>
+                <option value="item-1">Yes</option>
+                <option value="item-2">No</option>
             </select>
         </div>
     )

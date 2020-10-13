@@ -1,11 +1,11 @@
 import React from 'react';
 import './NamesPage.css';
-import NamesList from '../../components/NamesList/NamesList';
+import NamesTable from '../../components/NamesTable/NamesTable';
 
 const NamesPage = (props) => {
     return (
         <div>
-            <NamesList names={props.names} />
+            <NamesTable names={props.names} />
         </div>
     )
 }
