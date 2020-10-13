@@ -2,12 +2,12 @@ import React from 'react';
 import NameCard from '../../components/NameCard/NameCard';
 
 const NameDetailPage = (props) => {
-    // const name = props.location.state.name;
+    console.log(props);
     return (
-        <>
-            <h1>Name Details</h1>
-            <NameCard />
-        </>
+        <div>
+            <h3>Name Details</h3>
+            <NameCard name={props.location.state.name} />
+        </div>
     )
 }
 

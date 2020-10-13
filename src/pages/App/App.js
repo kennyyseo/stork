@@ -30,7 +30,7 @@ class App extends Component {
     const newName = await namesService.create(newNameData);
     this.setState(
       state => ({
-        names: [...state.names, newName],
+        names: [...state.names, newName]
       }),
       () => this.props.history.push('/names')
     );

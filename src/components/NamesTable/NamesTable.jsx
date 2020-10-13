@@ -17,14 +17,12 @@ const NamesTable = (props) => {
                         {props.names.map((name, i) =>
                             <tr key={i}>
                                 <th scope="row">{i + 1}</th>
-                                <td><Link
-                                    to={{
-                                        pathname: '/details',
-                                    }}
-                                >
-                                    {name.name}
-                                </Link>
-                                </td>
+                                <td>
+                                    <Link to={{
+                                        pathname: '/details', state: { name }
+                                    }} >
+                                        {name.name}
+                                    </Link></td>
                             </tr>
                         )}
                     </tbody>
