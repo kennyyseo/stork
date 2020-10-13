@@ -9,6 +9,7 @@ import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import NamesPage from '../NamesPage/NamesPage';
 import AddNamePage from '../AddNamePage/AddNamePage';
+import NameDetailPage from '../NameDetailPage/NameDetailPage';
 
 
 class App extends Component {
@@ -83,6 +84,9 @@ class App extends Component {
             <AddNamePage
               handleAddName={this.handleAddName}
               user={this.state.user} />
+          } />
+          <Route exact path='/details' render={({ location }) =>
+            <NameDetailPage location={location} />
           } />
           <Route exact path='/signup' render={({ history }) =>
             <SignupPage
