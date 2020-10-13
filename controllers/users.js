@@ -1,6 +1,5 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-
 const SECRET = process.env.SECRET;
 
 module.exports = {
@@ -29,7 +28,7 @@ async function signup(req, res) {
     const user = new User(req.body);
     try {
         await user.save();
-        // TODO: Send back a JWT instead of the user
+        // Be sure to first delete data that should not be in the token
         const token = createJWT(user);
         res.json({ token });
     } catch (err) {

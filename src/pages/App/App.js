@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Switch, Redirect, NavLink } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import userService from '../../utils/userService';
+import namesService from '../../utils/namesService';
+import NavBar from '../../components/NavBar/NavBar';
+import WelcomePage from '../WelcomePage/WelcomePage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
-import NamePage from '../../components/NamePage/NamePage'
-import * as nameAPI from "../../services/names-api";
-import userService from '../../utils/userService';
+import NamesPage from '../NamesPage/NamesPage';
+import AddNamePage from '../AddNamePage/AddNamePage';
+
 
 class App extends Component {
   constructor() {
@@ -17,9 +21,37 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const apiNames = await nameAPI.getAll();
-    this.setState({ names: apiNames })
+    const names = await namesService.getAll();
+    this.setState({ names });
   }
+
+  handleAddName = async newNameData => {
+    const newName = await namesService.create(newNameData);
+    this.setState(
+      state => ({
+        names: [...state.names, newName],
+      }),
+      () => this.props.history.push('/names')
+    );
+  }
+
+  // handleDeleteName = async id => {
+  //   await namesService.deleteOne(id);
+  //   this.setState(state => ({
+  //     names: state.names.filter(n => n._id !== id)
+  //   }), () => this.props.history.push('/names'));
+  // }
+
+  // handleUpdateName = async updatedNameData => {
+  //   const updatedName = await namesService.update(updatedNameData);
+  //   const newNamesArray = this.state.names.map(p =>
+  //     n._id === updatedName._id ? updatedName : n
+  //   );
+  //   this.setState(
+  //     { names: newNamesArray },
+  //     () => this.props.history.push('/names)
+  //   );
+  // }
 
   handleLogout = () => {
     userService.logout();
@@ -33,12 +65,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className='App-header'>Stork</header>
+        <NavBar
+          user={this.state.user}
+          handleLogout={this.handleLogout}
+        />
         <Switch>
           <Route exact path='/' render={() =>
-            <NamePage
+            <WelcomePage />
+          } />
+          <Route exact path='/names' render={() =>
+            <NamesPage
               user={this.state.user}
+              names={this.state.names}
             />
+          } />
+          <Route exact path='/add' render={() =>
+            <AddNamePage
+              handleAddName={this.handleAddName}
+              user={this.state.user} />
           } />
           <Route exact path='/signup' render={({ history }) =>
             <SignupPage

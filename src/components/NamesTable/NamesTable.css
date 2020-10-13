@@ -1,0 +1,10 @@
+.NamesTable {
+    max-width: 750px;
+    margin: 50px auto auto auto;
+    background-color: lightblue;
+    border: 2px solid black;
+}
+
+td:hover{
+    cursor: grab;
+}
