@@ -1,0 +1,27 @@
+#title {
+    margin: 50px;
+}
+
+.btn {
+    margin: 110px auto 50px auto;
+}
+
+.btn-warning {
+    margin-right: 10px;
+}
+
+.panel {
+    width: 700px;
+    border: 2px solid black;
+    margin: auto;
+    border-radius: 20px;
+    background-color: lightgoldenrodyellow;
+}
+
+.panel-footer {
+    margin: 30px 0 30px 0;
+}
+
+.properties {
+    margin-bottom: 50px;;
+}

@@ -1,3 +1,11 @@
-h1 {
-    margin: 200px auto auto auto;
+#greeting {
+    margin: 230px auto auto auto;
+}
+
+#items {
+    margin-top: 30px;
+}
+
+.prompt {
+    margin-top: 50px;
 }

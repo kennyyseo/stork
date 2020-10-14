@@ -9,6 +9,9 @@ import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import NamesPage from '../NamesPage/NamesPage';
 import AddNamePage from '../AddNamePage/AddNamePage';
+import NameDetailPage from '../NameDetailPage/NameDetailPage';
+import EditNamePage from '../EditNamePage/EditNamePage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class App extends Component {
@@ -16,7 +19,7 @@ class App extends Component {
     super();
     this.state = {
       names: [],
-      user: userService.getUser()
+      user: userService.getUser(),
     }
   }
 
@@ -25,33 +28,43 @@ class App extends Component {
     this.setState({ names });
   }
 
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.user !== prevState.user) {
+      const names = await namesService.getAll();
+      this.setState({ names });
+    }
+  }
+
   handleAddName = async newNameData => {
     const newName = await namesService.create(newNameData);
     this.setState(
       state => ({
-        names: [...state.names, newName],
+        names: [...state.names, newName]
       }),
       () => this.props.history.push('/names')
     );
   }
 
-  // handleDeleteName = async id => {
-  //   await namesService.deleteOne(id);
-  //   this.setState(state => ({
-  //     names: state.names.filter(n => n._id !== id)
-  //   }), () => this.props.history.push('/names'));
-  // }
+  handleDeleteName = async id => {
+    await namesService.deleteOne(id);
+    this.setState(
+      state => ({
+        names: state.names.filter(n => n._id !== id)
+      }),
+      () => this.props.history.push('/names')
+    );
+  }
 
-  // handleUpdateName = async updatedNameData => {
-  //   const updatedName = await namesService.update(updatedNameData);
-  //   const newNamesArray = this.state.names.map(p =>
-  //     n._id === updatedName._id ? updatedName : n
-  //   );
-  //   this.setState(
-  //     { names: newNamesArray },
-  //     () => this.props.history.push('/names)
-  //   );
-  // }
+  handleUpdateName = async updatedNameData => {
+    const updatedName = await namesService.update(updatedNameData);
+    const newNamesArray = this.state.names.map(n =>
+      n._id === updatedName._id ? updatedName : n
+    );
+    this.setState(
+      { names: newNamesArray },
+      () => this.props.history.push('/names')
+    );
+  }
 
   handleLogout = () => {
     userService.logout();
@@ -60,6 +73,23 @@ class App extends Component {
 
   handleSignupOrLogin = () => {
     this.setState({ user: userService.getUser() });
+  }
+
+  onDragEnd = (result) => {
+    const { destination, source, reason } = result;
+    if (!destination || reason === 'CANCEL') {
+      return;
+    }
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+      return;
+    }
+    const names = Object.assign([], this.state.names);
+    const droppedName = this.state.names[source.index];
+    names.splice(source.index, 1);
+    names.splice(destination.index, 0, droppedName);
+    this.setState({
+      names
+    });
   }
 
   render() {
@@ -71,18 +101,34 @@ class App extends Component {
         />
         <Switch>
           <Route exact path='/' render={() =>
-            <WelcomePage />
+            <WelcomePage
+              user={this.state.user}
+              names={this.state.names}
+            />
           } />
           <Route exact path='/names' render={() =>
             <NamesPage
               user={this.state.user}
               names={this.state.names}
+              onDragEnd={this.onDragEnd}
             />
           } />
           <Route exact path='/add' render={() =>
             <AddNamePage
               handleAddName={this.handleAddName}
               user={this.state.user} />
+          } />
+          <Route exact path='/details' render={({ location }) =>
+            <NameDetailPage
+              location={location}
+              handleDeleteName={this.handleDeleteName}
+            />
+          } />
+          <Route exact path='/edit' render={({ location }) =>
+            <EditNamePage
+              location={location}
+              handleUpdateName={this.handleUpdateName}
+            />
           } />
           <Route exact path='/signup' render={({ history }) =>
             <SignupPage

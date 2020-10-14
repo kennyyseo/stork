@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
-import './AddNamePage.css'
 import { Link } from 'react-router-dom';
+import './EditNamePage.css'
 
-class AddNamePage extends Component {
+class EditNamePage extends Component {
     state = {
-        invalidForm: true,
-        formData: {
-            name: '',
-            meaning: '',
-            description: '',
-        }
+        invalidForm: false,
+        formData: this.props.location.state.name
     }
 
     formRef = React.createRef();
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.handleAddName(this.state.formData);
-    };
+        this.props.handleUpdateName(this.state.formData);
+    }
+
 
     handleChange = e => {
         const formData = { ...this.state.formData, [e.target.name]: e.target.value };
@@ -25,15 +22,15 @@ class AddNamePage extends Component {
             formData,
             invalidForm: !this.formRef.current.checkValidity()
         });
-    };
+    }
 
     render() {
         return (
             <>
-                <h1 className='title'>Add Baby Name</h1>
+                <h1 className='title'>Edit Name</h1>
                 <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <label>Baby Name (required)</label>
+                        <label>Baby's Name (required)</label>
                         <input
                             className="form-control"
                             name="name"
@@ -41,9 +38,9 @@ class AddNamePage extends Component {
                             onChange={this.handleChange}
                             required
                         />
-                    </div>
+                    </div >
                     <div className="form-group">
-                        <label>Name Meaning</label>
+                        <label>Meaning</label>
                         <input
                             className="form-control"
                             name="meaning"
@@ -63,14 +60,14 @@ class AddNamePage extends Component {
                     </div>
                     <button
                         type="submit"
-                        className="btn btn-success"
+                        className="btn btn-xs btn-success"
                         disabled={this.state.invalidForm}
                     >
-                        Add Name
+                        Save Name
                     </button>
                     &nbsp;
                     <Link to='/names'>Cancel</Link>
-                </form>
+                </form >
             </>
         );
     }
@@ -78,4 +75,6 @@ class AddNamePage extends Component {
 
 
 
-export default AddNamePage
+
+
+export default EditNamePage;
