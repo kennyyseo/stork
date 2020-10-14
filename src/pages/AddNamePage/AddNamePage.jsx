@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './AddNamePage.css'
+import { Link } from 'react-router-dom';
 
 class AddNamePage extends Component {
     state = {
@@ -62,11 +63,13 @@ class AddNamePage extends Component {
                     </div>
                     <button
                         type="submit"
-                        className="btn"
+                        className="btn btn-success"
                         disabled={this.state.invalidForm}
                     >
                         Add Name
-         </button>
+                    </button>
+                    &nbsp;
+                    <Link to='/names'>Cancel</Link>
                 </form>
             </>
         );

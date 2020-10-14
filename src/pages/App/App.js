@@ -19,7 +19,7 @@ class App extends Component {
     super();
     this.state = {
       names: [],
-      user: userService.getUser()
+      user: userService.getUser(),
     }
   }
 
@@ -89,7 +89,7 @@ class App extends Component {
     names.splice(destination.index, 0, droppedName);
     this.setState({
       names
-    })
+    });
   }
 
   render() {
@@ -101,7 +101,10 @@ class App extends Component {
         />
         <Switch>
           <Route exact path='/' render={() =>
-            <WelcomePage />
+            <WelcomePage
+              user={this.state.user}
+              names={this.state.names}
+            />
           } />
           <Route exact path='/names' render={() =>
             <NamesPage

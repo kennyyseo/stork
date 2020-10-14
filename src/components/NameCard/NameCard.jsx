@@ -6,15 +6,15 @@ const NameCard = ({ name, handleDeleteName }) => {
     return (
         <div>
             <div className='panel panel-default'>
-                <div className="panel-heading">
-                    <h3 className='panel-title'>{name.name}</h3>
+                <div>
+                    <h3 id='title'>{name.name}</h3>
                 </div>
-                <div className='panel-body'>
+                <div>
                     <dl>
                         <dt>Meaning</dt>
-                        <dd>{name.meaning}</dd>
+                        <dd className='properties'>{name.meaning}</dd>
                         <dt>Description</dt>
-                        <dd>{name.description}</dd>
+                        <dd className='properties'>{name.description}</dd>
                     </dl>
                 </div>
                 <Link

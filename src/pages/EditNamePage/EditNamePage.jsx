@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './EditNamePage.css'
 
 class EditNamePage extends Component {
     state = {
@@ -26,7 +27,7 @@ class EditNamePage extends Component {
     render() {
         return (
             <>
-                <h1>Edit Name</h1>
+                <h1 className='title'>Edit Name</h1>
                 <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Baby's Name (required)</label>
@@ -37,7 +38,7 @@ class EditNamePage extends Component {
                             onChange={this.handleChange}
                             required
                         />
-                    </div>
+                    </div >
                     <div className="form-group">
                         <label>Meaning</label>
                         <input
@@ -59,13 +60,14 @@ class EditNamePage extends Component {
                     </div>
                     <button
                         type="submit"
-                        className="btn btn-xs"
+                        className="btn btn-xs btn-success"
                         disabled={this.state.invalidForm}
                     >
                         Save Name
-         </button>&nbsp;&nbsp;
-         <Link to='/names'>Cancel</Link>
-                </form>
+                    </button>
+                    &nbsp;
+                    <Link to='/names'>Cancel</Link>
+                </form >
             </>
         );
     }

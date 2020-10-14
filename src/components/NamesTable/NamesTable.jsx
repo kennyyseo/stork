@@ -20,18 +20,14 @@ const NamesTable = (props) => {
                                 {props.names.map((name, index) =>
                                     <Draggable key={index} draggableId={index + ''} index={index}>
                                         {(provided) => (
-                                            <div
-                                                ref={provided.innerRef}
+                                            <tr key={index} ref={provided.innerRef}
                                                 {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                            >
-                                                <tr key={index}>
-                                                    <th scope="row">{index + 1}</th>
-                                                    <td>
-                                                        <Link to={{ pathname: '/details', state: { name } }} >{name.name}</Link>
-                                                    </td>
-                                                </tr>
-                                            </div>
+                                                {...provided.dragHandleProps}>
+                                                <th scope="row">{index + 1}</th>
+                                                <td>
+                                                    <Link to={{ pathname: '/details', state: { name } }} >{name.name}</Link>
+                                                </td>
+                                            </tr>
                                         )}
                                     </Draggable>
                                 )}
@@ -40,7 +36,6 @@ const NamesTable = (props) => {
                         )}
                     </Droppable>
                 </table>
-                <h4>Drag and drop the names as you like!</h4>
             </DragDropContext>
             :
             <h1>Add A Name!</h1>
