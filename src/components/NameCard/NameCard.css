@@ -5,3 +5,19 @@ h3 {
 .btn {
     margin: 20px auto 50px auto;
 }
+
+.btn-warning {
+    margin-right: 10px;
+}
+
+.panel {
+    width: 700px;
+    border: 2px solid black;
+    margin: auto;
+    border-radius: 20px;
+    background-color: lightgoldenrodyellow;
+}
+
+.panel-footer {
+    margin-bottom: 50px;
+}

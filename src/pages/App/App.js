@@ -10,6 +10,8 @@ import LoginPage from '../LoginPage/LoginPage';
 import NamesPage from '../NamesPage/NamesPage';
 import AddNamePage from '../AddNamePage/AddNamePage';
 import NameDetailPage from '../NameDetailPage/NameDetailPage';
+import EditNamePage from '../EditNamePage/EditNamePage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class App extends Component {
@@ -26,6 +28,13 @@ class App extends Component {
     this.setState({ names });
   }
 
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.user !== prevState.user) {
+      const names = await namesService.getAll();
+      this.setState({ names });
+    }
+  }
+
   handleAddName = async newNameData => {
     const newName = await namesService.create(newNameData);
     this.setState(
@@ -36,23 +45,26 @@ class App extends Component {
     );
   }
 
-  // handleDeleteName = async id => {
-  //   await namesService.deleteOne(id);
-  //   this.setState(state => ({
-  //     names: state.names.filter(n => n._id !== id)
-  //   }), () => this.props.history.push('/names'));
-  // }
+  handleDeleteName = async id => {
+    await namesService.deleteOne(id);
+    this.setState(
+      state => ({
+        names: state.names.filter(n => n._id !== id)
+      }),
+      () => this.props.history.push('/names')
+    );
+  }
 
-  // handleUpdateName = async updatedNameData => {
-  //   const updatedName = await namesService.update(updatedNameData);
-  //   const newNamesArray = this.state.names.map(p =>
-  //     n._id === updatedName._id ? updatedName : n
-  //   );
-  //   this.setState(
-  //     { names: newNamesArray },
-  //     () => this.props.history.push('/names)
-  //   );
-  // }
+  handleUpdateName = async updatedNameData => {
+    const updatedName = await namesService.update(updatedNameData);
+    const newNamesArray = this.state.names.map(n =>
+      n._id === updatedName._id ? updatedName : n
+    );
+    this.setState(
+      { names: newNamesArray },
+      () => this.props.history.push('/names')
+    );
+  }
 
   handleLogout = () => {
     userService.logout();
@@ -86,7 +98,16 @@ class App extends Component {
               user={this.state.user} />
           } />
           <Route exact path='/details' render={({ location }) =>
-            <NameDetailPage location={location} />
+            <NameDetailPage
+              location={location}
+              handleDeleteName={this.handleDeleteName}
+            />
+          } />
+          <Route exact path='/edit' render={({ location }) =>
+            <EditNamePage
+              location={location}
+              handleUpdateName={this.handleUpdateName}
+            />
           } />
           <Route exact path='/signup' render={({ history }) =>
             <SignupPage

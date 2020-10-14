@@ -2,32 +2,33 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './NameCard.css'
 
-const NameCard = (props) => {
+const NameCard = ({ name, handleDeleteName }) => {
     return (
         <div>
             <div className='panel panel-default'>
                 <div className="panel-heading">
-                    <h3 className='panel-title'>{props.name.name}</h3>
+                    <h3 className='panel-title'>{name.name}</h3>
                 </div>
                 <div className='panel-body'>
                     <dl>
                         <dt>Meaning</dt>
-                        <dd>{props.name.meaning}</dd>
+                        <dd>{name.meaning}</dd>
                         <dt>Description</dt>
-                        <dd>{props.name.description}</dd>
+                        <dd>{name.description}</dd>
                     </dl>
                 </div>
                 <Link
                     className='btn btn-xs btn-warning'
                     to={{
                         pathname: '/edit',
+                        state: { name },
                     }}
                 >
                     EDIT
                 </Link>
                 <button
                     className="btn btn-xs btn-danger margin-left-10"
-                    onClick={() => props.handleDeleteName(props.name._id)}
+                    onClick={() => handleDeleteName(name._id)}
                 >
                     DELETE
                 </button>
