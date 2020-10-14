@@ -75,6 +75,23 @@ class App extends Component {
     this.setState({ user: userService.getUser() });
   }
 
+  onDragEnd = (result) => {
+    const { destination, source, reason } = result;
+    if (!destination || reason === 'CANCEL') {
+      return;
+    }
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+      return;
+    }
+    const names = Object.assign([], this.state.names);
+    const droppedName = this.state.names[source.index];
+    names.splice(source.index, 1);
+    names.splice(destination.index, 0, droppedName);
+    this.setState({
+      names
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -90,6 +107,7 @@ class App extends Component {
             <NamesPage
               user={this.state.user}
               names={this.state.names}
+              onDragEnd={this.onDragEnd}
             />
           } />
           <Route exact path='/add' render={() =>
