@@ -30,7 +30,7 @@ class AddNamePage extends Component {
     render() {
         return (
             <>
-                <h1 className='title'>Add Baby Name</h1>
+                <h1 className='title'>Add Baby {this.props.gender} Name</h1>
                 <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Baby Name (required)</label>
@@ -49,7 +49,6 @@ class AddNamePage extends Component {
                             name="meaning"
                             value={this.state.formData.meaning}
                             onChange={this.handleChange}
-                            required
                         />
                     </div>
                     <div className="form-group">

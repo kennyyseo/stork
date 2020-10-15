@@ -6,10 +6,12 @@ const WelcomePage = (props) => {
         return (
             <div>
                 <h1 id='greeting'>Welcome {props.user.name}!</h1>
-                <h3 className='prompt'>Do you know the gender of your baby?</h3>
-                <select id="items">
-                    <option value="item-1">Yes</option>
-                    <option value="item-2">No</option>
+                <h3 className='prompt'>What's your baby's gender?</h3>
+                <select id="gender-options" onChange={props.handleGenderChange}>
+                    {console.log(props.handleGenderChange)}
+                    <option value="Boy">Boy</option>
+                    <option value="Girl">Girl</option>
+                    <option value="">Don't know yet</option>
                 </select>
             </div>
         )
@@ -38,3 +40,4 @@ const WelcomePage = (props) => {
 }
 
 export default WelcomePage;
+
