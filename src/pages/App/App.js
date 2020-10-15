@@ -11,8 +11,8 @@ import NamesPage from '../NamesPage/NamesPage';
 import AddNamePage from '../AddNamePage/AddNamePage';
 import NameDetailPage from '../NameDetailPage/NameDetailPage';
 import EditNamePage from '../EditNamePage/EditNamePage';
+import SettingsPage from '../SettingsPage/SettingsPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 class App extends Component {
   constructor() {
@@ -107,6 +107,14 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={() =>
             <WelcomePage
+              user={this.state.user}
+              names={this.state.names}
+              handleGenderChange={this.handleGenderChange}
+              gender={this.state.gender}
+            />
+          } />
+          <Route exact path='/settings' render={() =>
+            < SettingsPage
               user={this.state.user}
               names={this.state.names}
               handleGenderChange={this.handleGenderChange}

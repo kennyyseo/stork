@@ -22,7 +22,7 @@ const WelcomePage = (props) => {
                 <select id="gender-options" onChange={props.handleGenderChange} >
                     <option value="Boy">Boy</option>
                     <option value="Girl">Girl</option>
-                    <option value="">Don't know yet</option>
+                    <option value="">I don't know yet</option>
                 </select>
             </div>
         )
