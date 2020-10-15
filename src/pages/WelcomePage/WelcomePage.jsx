@@ -19,7 +19,7 @@ const WelcomePage = (props) => {
             <div>
                 <h1 id='greeting'>Welcome {props.user.name}!</h1>
                 <h3 className='prompt'>What's your baby's gender?</h3>
-                <select id="gender-options" onChange={props.handleGenderChange} value={props.gender}>
+                <select id="gender-options" onChange={props.handleGenderChange} >
                     <option value="Boy">Boy</option>
                     <option value="Girl">Girl</option>
                     <option value="">Don't know yet</option>
