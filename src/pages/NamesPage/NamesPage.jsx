@@ -12,7 +12,7 @@ const NamesPage = (props, i) => {
         return (
             <div>
                 <h1 className='title'>Baby {props.gender} Names:</h1>
-                <NamesTable names={props.names} onDragEnd={props.onDragEnd} user={props.user} />
+                <NamesTable names={props.names} onDragEnd={props.onDragEnd} user={props.user} gender={props.gender} />
                 <h3 className='directions'>Nice name. Let's add more!</h3>
             </div>
         )
@@ -20,7 +20,7 @@ const NamesPage = (props, i) => {
         return (
             <div>
                 <h1 className='title'>Baby {props.gender} Names:</h1>
-                <NamesTable names={props.names} onDragEnd={props.onDragEnd} user={props.user} />
+                <NamesTable names={props.names} onDragEnd={props.onDragEnd} user={props.user} gender={props.gender} />
                 <h3 className='directions'>Drag and drop the names as you like!</h3>
             </div>
         )
