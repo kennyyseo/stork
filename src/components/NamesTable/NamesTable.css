@@ -1,7 +1,7 @@
 .table {
     max-width: 750px;
     margin: 50px auto auto auto;
-    background-color: lightpink;
+    background-color: grey;
     border: 3px solid black;
 }
 
@@ -9,6 +9,15 @@ tbody:hover{
     cursor: grab;
 }
 
-tr{
+
+#boy-tr {
+    background-color: skyblue;
+}
+
+#girl-tr {
     background-color: lightpink;
+}
+
+#tr {
+    background-color: rgb(247, 239, 176);
 }

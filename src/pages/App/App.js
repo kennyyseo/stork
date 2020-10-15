@@ -11,8 +11,8 @@ import NamesPage from '../NamesPage/NamesPage';
 import AddNamePage from '../AddNamePage/AddNamePage';
 import NameDetailPage from '../NameDetailPage/NameDetailPage';
 import EditNamePage from '../EditNamePage/EditNamePage';
+import SettingsPage from '../SettingsPage/SettingsPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 class App extends Component {
   constructor() {
@@ -20,6 +20,7 @@ class App extends Component {
     this.state = {
       names: [],
       user: userService.getUser(),
+      gender: 'Boy',
     }
   }
 
@@ -71,6 +72,10 @@ class App extends Component {
     this.setState({ user: null });
   }
 
+  handleGenderChange = (e) => {
+    this.setState({ gender: e.target.value });
+  }
+
   handleSignupOrLogin = () => {
     this.setState({ user: userService.getUser() });
   }
@@ -104,6 +109,16 @@ class App extends Component {
             <WelcomePage
               user={this.state.user}
               names={this.state.names}
+              handleGenderChange={this.handleGenderChange}
+              gender={this.state.gender}
+            />
+          } />
+          <Route exact path='/settings' render={() =>
+            < SettingsPage
+              user={this.state.user}
+              names={this.state.names}
+              handleGenderChange={this.handleGenderChange}
+              gender={this.state.gender}
             />
           } />
           <Route exact path='/names' render={() =>
@@ -111,12 +126,15 @@ class App extends Component {
               user={this.state.user}
               names={this.state.names}
               onDragEnd={this.onDragEnd}
+              gender={this.state.gender}
             />
           } />
           <Route exact path='/add' render={() =>
             <AddNamePage
               handleAddName={this.handleAddName}
-              user={this.state.user} />
+              user={this.state.user}
+              gender={this.state.gender}
+            />
           } />
           <Route exact path='/details' render={({ location }) =>
             <NameDetailPage

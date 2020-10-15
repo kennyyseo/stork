@@ -28,6 +28,7 @@ async function show(req, res) {
 
 async function create(req, res) {
     try {
+        req.body.user = req.user
         const name = await Name.create(req.body);
         res.status(201).json(name);
     } catch (err) {

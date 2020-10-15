@@ -7,12 +7,12 @@ const NavBar = (props) => {
     let nav = props.user ?
         <div>
             <nav className="navbar navbar-expand navbar-light bg-light">
-                <a className="navbar-brand" href="/">
-                    <img className='logo' src="https://i.imgur.com/49vugMb.png" alt="" />
-                    Stork
-                </a>
+                <Link to='/' className='navbar-brand' ><img className='logo' src="https://i.imgur.com/49vugMb.png" alt="" />Stork</Link>
                 <div id="navbarNav">
                     <ul className="navbar-nav">
+                        <li>
+                            <Link to='/settings' className='nav-link'> Settings </Link>
+                        </li>
                         <li>
                             <Link to='/names' className='nav-link'> My Names </Link>
                         </li>
