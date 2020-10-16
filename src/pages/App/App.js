@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import userService from '../../utils/userService';
 import namesService from '../../utils/namesService';
 import NavBar from '../../components/NavBar/NavBar';
+import Footer from '../../components/Footer/Footer';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -20,7 +21,7 @@ class App extends Component {
     this.state = {
       names: [],
       user: userService.getUser(),
-      gender: 'Boy',
+      gender: '',
     }
   }
 
@@ -161,6 +162,7 @@ class App extends Component {
             />
           } />
         </Switch>
+        <Footer />
       </div>
     );
   }
