@@ -4,8 +4,7 @@ import NamesTable from '../../components/NamesTable/NamesTable';
 import { Redirect } from 'react-router';
 import logo from '../../assets/listgif_igl9j7.gif';
 
-const NamesPage = (props, i) => {
-    console.log(props.names.filter(name => (props.user._id === name.user)));
+const NamesPage = (props) => {
     if (props.names.filter(name => (props.user._id === name.user)).length === 0) {
         return (
             <Redirect to="/" />
@@ -21,6 +20,7 @@ const NamesPage = (props, i) => {
     } else if (props.names.filter(name => (props.user._id === name.user)).length > 1) {
         return (
             <div>
+                <div id='countdown'>Baby Countdown: </div>
                 <h1 className='title'>Baby {props.gender} Names:</h1>
                 <NamesTable names={props.names} onDragEnd={props.onDragEnd} user={props.user} gender={props.gender} />
                 <img id='gif' src={logo} alt="loading..." />

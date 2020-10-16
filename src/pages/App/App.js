@@ -22,6 +22,7 @@ class App extends Component {
       names: [],
       user: userService.getUser(),
       gender: '',
+      duedate: '',
     }
   }
 
@@ -68,13 +69,17 @@ class App extends Component {
     );
   }
 
+  handleGenderChange = (e) => {
+    this.setState({ gender: e.target.value });
+  }
+
+  handleDueDateChange = (e) => {
+    this.setState({ duedate: e.target.value })
+  }
+
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
-  }
-
-  handleGenderChange = (e) => {
-    this.setState({ gender: e.target.value });
   }
 
   handleSignupOrLogin = () => {
@@ -118,8 +123,10 @@ class App extends Component {
             < SettingsPage
               user={this.state.user}
               names={this.state.names}
-              handleGenderChange={this.handleGenderChange}
               gender={this.state.gender}
+              duedate={this.state.duedate}
+              handleGenderChange={this.handleGenderChange}
+              handleDueDateChange={this.handleDueDateChange}
             />
           } />
           <Route exact path='/names' render={() =>
