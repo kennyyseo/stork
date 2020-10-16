@@ -88,8 +88,8 @@ class App extends Component {
     if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return;
     }
-    const names = Object.assign([], this.state.names);
-    const droppedName = this.state.names[source.index];
+    const names = Object.assign([], this.state.names.filter(name => (this.state.user._id === name.user)));
+    const droppedName = this.state.names.filter(name => (this.state.user._id === name.user))[source.index];
     names.splice(source.index, 1);
     names.splice(destination.index, 0, droppedName);
     this.setState({

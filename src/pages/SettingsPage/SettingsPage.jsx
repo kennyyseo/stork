@@ -2,7 +2,6 @@ import React from 'react';
 
 const SettingsPage = (props) => {
     if (props.user && props.names.filter(name => (props.user._id === name.user)).length >= 0) {
-        console.log(props.gender)
         return (
             <div>
                 <h3 className='prompt'>What's your baby's gender?</h3>

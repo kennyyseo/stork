@@ -8,6 +8,9 @@
   font-size: 50px;
 }
 
-.directions {
-  margin-top: 100px;
+#gif {
+  margin: 20px;
+  width: 20%;
+  border: 5px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
 }
