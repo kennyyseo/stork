@@ -29,10 +29,7 @@ const NavBar = (props) => {
         :
         <div>
             <nav className="navbar navbar-expand navbar-light bg-light">
-                <a className="navbar-brand" href="/">
-                    <img className='logo' src="https://i.imgur.com/49vugMb.png" alt="" />
-                    Stork
-                </a>
+                <Link to='/' className='navbar-brand' ><img className='logo' src="https://i.imgur.com/49vugMb.png" alt="" />Stork</Link>
                 <div id="navbarNav">
                     <ul className="navbar-nav">
                         <li>
