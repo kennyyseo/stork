@@ -6,6 +6,7 @@ const SettingsPage = (props) => {
         return (
             <div>
                 <div>
+                    <h1 id='settings'>Settings</h1>
                     <label className='prompt'>Baby Gender: </label>
                     &nbsp;
                     <select id="gender-options" onChange={props.handleGenderChange} value={props.gender}>
@@ -14,12 +15,11 @@ const SettingsPage = (props) => {
                         <option value="Girl">Girl</option>
                     </select>
                 </div>
-                <div id='duedate'>
-                    <label>Expected Due Date:</label>
+                <div >
+                    <label id='dueDate'>Expected Due Date:</label>
                     &nbsp;
-                    <input type="date" name="duedate" onChange={props.handleDueDateChange} value={props.duedate} />
+                    <input type="date" name="dueDate" onChange={props.handleDueDateChange} value={props.dueDate} />
                 </div>
-                {console.log(props.duedate)}
             </div>
         )
     }

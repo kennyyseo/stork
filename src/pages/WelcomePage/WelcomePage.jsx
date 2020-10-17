@@ -26,18 +26,11 @@ const WelcomePage = (props) => {
                 </select>
             </div>
         )
-    } else if (props.user && props.names.filter(name => (props.user._id === name.user)).length === 1) {
+    } else if (props.user && props.names.filter(name => (props.user._id === name.user)).length > 0) {
         return (
             <div>
                 <h1 id='greeting'>Welcome, {props.user.name}!</h1>
-                <h3 className='prompt'>We like the name you're considering - go ahead and add more!</h3>
-            </div>
-        )
-    } else if (props.user && props.names.filter(name => (props.user._id === name.user)).length > 1) {
-        return (
-            <div>
-                <h1 id='greeting'>Welcome, {props.user.name}!</h1>
-                <h3 className='prompt'>Nice list of names!</h3>
+                <h3 className='prompt'>We're so excited for your baby {props.gender.toLowerCase()}!</h3>
             </div>
         )
     } else {

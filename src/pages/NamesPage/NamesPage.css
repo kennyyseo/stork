@@ -3,9 +3,11 @@
   flex-direction: column;
 }
 
-.title {
-  margin-top: 50px;
+#title {
+  margin-top: 40px;
   font-size: 50px;
+  color: rgb(82, 82, 82);
+  font-size: 55px;
 }
 
 #gif {
@@ -22,4 +24,9 @@
   position: relative;
   left: 5px;
   margin-top: 10px;
+}
+
+#directions {
+  margin-top: 20px;
+  color: rgb(82, 82, 82)
 }

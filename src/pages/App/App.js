@@ -22,7 +22,8 @@ class App extends Component {
       names: [],
       user: userService.getUser(),
       gender: '',
-      duedate: '',
+      dueDate: '',
+      daysLeft: '',
     }
   }
 
@@ -74,7 +75,17 @@ class App extends Component {
   }
 
   handleDueDateChange = (e) => {
-    this.setState({ duedate: e.target.value })
+    this.setState({ dueDate: e.target.value })
+  }
+
+  calculateDaysLeft = () => {
+    const oneDay = 24 * 60 * 60 * 1000
+    const dueDate = this.state.dueDate
+    const today = new Date().toISOString().slice(0, 10);
+    const firstDate = new Date(today.split('-').join(','))
+    const secondDate = new Date(dueDate.split('-').join(','))
+    const diffDays = Math.round(Math.abs((secondDate - firstDate) / oneDay))
+    this.setState({ daysLeft: diffDays })
   }
 
   handleLogout = () => {
@@ -124,7 +135,7 @@ class App extends Component {
               user={this.state.user}
               names={this.state.names}
               gender={this.state.gender}
-              duedate={this.state.duedate}
+              dueDate={this.state.dueDate}
               handleGenderChange={this.handleGenderChange}
               handleDueDateChange={this.handleDueDateChange}
             />
@@ -133,8 +144,11 @@ class App extends Component {
             <NamesPage
               user={this.state.user}
               names={this.state.names}
-              onDragEnd={this.onDragEnd}
               gender={this.state.gender}
+              daysLeft={this.state.daysLeft}
+              dueDate={this.state.dueDate}
+              onDragEnd={this.onDragEnd}
+              calculateDaysLeft={this.calculateDaysLeft}
             />
           } />
           <Route exact path='/add' render={() =>

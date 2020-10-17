@@ -20,6 +20,7 @@
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-ticker": "^1.2.2",
     "serve-favicon": "^2.5.0"
   },
   "scripts": {
