@@ -14,7 +14,7 @@ const WelcomePage = (props) => {
                     <option value="Girl">Girl</option>
                 </select>
                 <br />
-                <label for='dueDate' id='dueDate'>What's your baby's due date?</label>
+                <label id='dueDate'>What's your baby's due date?</label>
                     &nbsp;
                 <input type="date" name="dueDate" onChange={props.handleDueDateChange} value={props.dueDate} />
             </div>
