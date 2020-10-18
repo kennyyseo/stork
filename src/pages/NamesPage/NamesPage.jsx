@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './NamesPage.css';
 import NamesTable from '../../components/NamesTable/NamesTable';
 import { Redirect } from 'react-router';
@@ -6,11 +6,11 @@ import logo from '../../assets/listgif_igl9j7.gif';
 import DueDateCountdown from '../../components/DueDateCountdown/DueDateCountdown';
 
 const NamesPage = (props) => {
-    // useEffect(
-    //     () => {
-    //         props.calculateDaysLeft();
-    //     }
-    // )
+    useEffect(
+        () => {
+            props.calculateDaysLeft();
+        }, []
+    )
     if (props.names.filter(name => (props.user._id === name.user)).length === 0) {
         return (
             <Redirect to="/" />
