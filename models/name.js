@@ -5,6 +5,7 @@ const nameSchema = new Schema({
     name: String,
     meaning: String,
     description: String,
+    gender: String,
     user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 

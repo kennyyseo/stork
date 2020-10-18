@@ -1,0 +1,15 @@
+.prompt {
+    margin-top: 100px;
+    color: rgb(82, 82, 82)
+}
+
+#dueDate {
+    margin-top: 50px;
+    color: rgb(82, 82, 82)
+}
+
+#settings {
+    color: rgb(82, 82, 82);
+    font-size: 55px;
+    margin-top: 95px;
+}

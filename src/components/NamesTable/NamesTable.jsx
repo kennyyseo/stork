@@ -25,7 +25,6 @@ const NamesTable = (props) => {
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}>
                                                     <th scope="row">{index + 1}</th>
-                                                    { console.log(name.user)}
                                                     <td>
                                                         <Link to={{ pathname: '/details', state: { name } }} >{name.name}</Link>
                                                     </td>
@@ -67,7 +66,6 @@ const NamesTable = (props) => {
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}>
                                                     <th scope="row">{index + 1}</th>
-                                                    { console.log(name.user)}
                                                     <td>
                                                         <Link to={{ pathname: '/details', state: { name } }} >{name.name}</Link>
                                                     </td>
@@ -109,7 +107,6 @@ const NamesTable = (props) => {
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}>
                                                     <th scope="row">{index + 1}</th>
-                                                    { console.log(name.user)}
                                                     <td>
                                                         <Link to={{ pathname: '/details', state: { name } }} >{name.name}</Link>
                                                     </td>

@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import userService from '../../utils/userService';
 import namesService from '../../utils/namesService';
 import NavBar from '../../components/NavBar/NavBar';
+import Footer from '../../components/Footer/Footer';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -20,7 +21,9 @@ class App extends Component {
     this.state = {
       names: [],
       user: userService.getUser(),
-      gender: 'Boy',
+      gender: '',
+      dueDate: '',
+      daysLeft: '',
     }
   }
 
@@ -67,13 +70,27 @@ class App extends Component {
     );
   }
 
+  handleGenderChange = (e) => {
+    this.setState({ gender: e.target.value });
+  }
+
+  handleDueDateChange = (e) => {
+    this.setState({ dueDate: e.target.value })
+  }
+
+  calculateDaysLeft = () => {
+    const oneDay = 24 * 60 * 60 * 1000
+    const dueDate = this.state.dueDate
+    const today = new Date().toISOString().slice(0, 10);
+    const firstDate = new Date(today.split('-').join(','))
+    const secondDate = new Date(dueDate.split('-').join(','))
+    const diffDays = Math.round(Math.abs((secondDate - firstDate) / oneDay))
+    this.setState({ daysLeft: diffDays })
+  }
+
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
-  }
-
-  handleGenderChange = (e) => {
-    this.setState({ gender: e.target.value });
   }
 
   handleSignupOrLogin = () => {
@@ -88,8 +105,8 @@ class App extends Component {
     if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return;
     }
-    const names = Object.assign([], this.state.names);
-    const droppedName = this.state.names[source.index];
+    const names = Object.assign([], this.state.names.filter(name => (this.state.user._id === name.user)));
+    const droppedName = this.state.names.filter(name => (this.state.user._id === name.user))[source.index];
     names.splice(source.index, 1);
     names.splice(destination.index, 0, droppedName);
     this.setState({
@@ -110,23 +127,30 @@ class App extends Component {
               user={this.state.user}
               names={this.state.names}
               handleGenderChange={this.handleGenderChange}
+              handleDueDateChange={this.handleDueDateChange}
               gender={this.state.gender}
+              dueDate={this.state.dueDate}
             />
           } />
           <Route exact path='/settings' render={() =>
             < SettingsPage
               user={this.state.user}
               names={this.state.names}
-              handleGenderChange={this.handleGenderChange}
               gender={this.state.gender}
+              dueDate={this.state.dueDate}
+              handleGenderChange={this.handleGenderChange}
+              handleDueDateChange={this.handleDueDateChange}
             />
           } />
           <Route exact path='/names' render={() =>
             <NamesPage
               user={this.state.user}
               names={this.state.names}
-              onDragEnd={this.onDragEnd}
               gender={this.state.gender}
+              daysLeft={this.state.daysLeft}
+              dueDate={this.state.dueDate}
+              onDragEnd={this.onDragEnd}
+              calculateDaysLeft={this.calculateDaysLeft}
             />
           } />
           <Route exact path='/add' render={() =>
@@ -161,6 +185,7 @@ class App extends Component {
             />
           } />
         </Switch>
+        <Footer />
       </div>
     );
   }
