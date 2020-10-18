@@ -16,7 +16,7 @@ const SettingsPage = (props) => {
                     </select>
                 </div>
                 <div >
-                    <label id='dueDate'>Expected Due Date:</label>
+                    <label id='dueDate' value={props.dueDate}>Expected Due Date:</label>
                     &nbsp;
                     <input type="date" name="dueDate" onChange={props.handleDueDateChange} value={props.dueDate} />
                 </div>

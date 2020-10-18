@@ -127,7 +127,9 @@ class App extends Component {
               user={this.state.user}
               names={this.state.names}
               handleGenderChange={this.handleGenderChange}
+              handleDueDateChange={this.handleDueDateChange}
               gender={this.state.gender}
+              dueDate={this.state.dueDate}
             />
           } />
           <Route exact path='/settings' render={() =>
