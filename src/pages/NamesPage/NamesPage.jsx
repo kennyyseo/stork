@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './NamesPage.css';
 import NamesTable from '../../components/NamesTable/NamesTable';
 import { Redirect } from 'react-router';
@@ -15,7 +15,24 @@ const NamesPage = (props) => {
         return (
             <Redirect to="/" />
         )
-    } else if (props.names.filter(name => (props.user._id === name.user)).length === 1) {
+    } else if (props.names.filter(name => (props.user._id === name.user)).length === 1 && props.dueDate === '') {
+        return (
+            <div>
+                <h1 id='title'>Baby {props.gender} Names:</h1>
+                <NamesTable names={props.names} onDragEnd={props.onDragEnd} user={props.user} gender={props.gender} />
+                <h3 id='directions'>Nice name. Let's add more!</h3>
+            </div>
+        )
+    } else if (props.names.filter(name => (props.user._id === name.user)).length > 1 && props.dueDate === '') {
+        return (
+            <div>
+                <h1 id='title'>Baby {props.gender} Names:</h1>
+                <NamesTable names={props.names} onDragEnd={props.onDragEnd} user={props.user} gender={props.gender} />
+                <img id='gif' src={logo} alt="loading..." />
+                <h3 id='directions'>Drag and drop the names as you like!</h3>
+            </div>
+        )
+    } else if (props.names.filter(name => (props.user._id === name.user)).length === 1 && props.dueDate) {
         return (
             <div>
                 <DueDateCountdown daysLeft={props.daysLeft} gender={props.gender} calculateDaysLeft={props.calculateDaysLeft} />
@@ -24,7 +41,7 @@ const NamesPage = (props) => {
                 <h3 id='directions'>Nice name. Let's add more!</h3>
             </div>
         )
-    } else if (props.names.filter(name => (props.user._id === name.user)).length > 1) {
+    } else if (props.names.filter(name => (props.user._id === name.user)).length > 1 && props.dueDate) {
         return (
             <div>
                 <DueDateCountdown daysLeft={props.daysLeft} gender={props.gender} calculateDaysLeft={props.calculateDaysLeft} />
