@@ -22,6 +22,6 @@ Sign Up for an account, update preferences, then add the names you're considerin
 
 ## **Next Steps**:
 
-- [x] Implement additional CSS
-- [ ] Include ability to add reps and agencies
-- [ ] Update nav bar to improve user experience
+- [ ] Implement additional CSS
+- [ ] Include seperate tables for boy/girl names if user doesn't know baby's gender yet
+- [ ] Nav bar mobile optimization
