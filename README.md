@@ -1,6 +1,6 @@
 # **Stork**
 
-Stork allows its users to login and store all the names that they're considering, regardless of gender.
+Stork allows its users to store all the names that they're considering for the baby they're expecting, regardless of gender.
 
 ### Features:
 
