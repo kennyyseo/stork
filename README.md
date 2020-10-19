@@ -16,6 +16,7 @@ Javascript, HTML, CSS, MongoDB, Express, React, Node, Bootstrap
 
 ## **Getting Started**:
 
+https://trello.com/b/czYbQ2GD/project-4-stork
 https://sei-stork.herokuapp.com/
 
 Sign Up for an account, update preferences, then add the names you're considering!
