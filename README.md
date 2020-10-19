@@ -2,7 +2,7 @@
 
 Stork allows its users to store all the names that they're considering for the baby they're expecting, regardless of gender.
 
-### Features:
+## **Features**:
 
 After signing up, you'll be directed to the welcome page, where users can select the gender of their baby, along with the due date. No worries if you don't know the baby's gender quite yet - simply select "I don't know yet". If at any time either of these settings change, you can navigate to the settings page and update your preferences. Once you're all set, feel free to add as many baby names as you'd like, along with the meaning of the name and any other notes you may have. Once you're all set with the names you're considering, go to the names list page, and drag and drop the names in order of preference!
 
